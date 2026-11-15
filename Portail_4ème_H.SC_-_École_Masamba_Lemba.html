@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4ème Humanités Scientifiques | École Masamba Lemba </title>
+    <!-- Tailwind CSS pour un affichage fluide sur mobile et ordinateur -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        emlBlue: '#0B4F9F',
+                        emlCyan: '#1DA1F2',
+                        emlNavy: '#0A192F',
+                        emlGold: '#FFD700',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* =====================================================================
+           ZONE PROTÉGÉE : STYLES & ANIMATIONS (NE PAS MODIFIER)
+           ===================================================================== */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-card {
+            animation: fadeSlideUp 0.25s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-emlNavy dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300 selection:bg-emlCyan selection:text-white">
+
+    <!-- =====================================================================
+         EN-TÊTE OFFICIEL (HEADER) — LOGO MASAMBA-LEMBA, COMPTEUR & JAUGE
+         ===================================================================== -->
+    <header class="relative bg-gradient-to-br from-emlNavy via-emlBlue to-blue-800 text-white border-b-4 border-emlGold shadow-xl overflow-hidden">
+        <!-- Motif subtil d'arrière-plan -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#1DA1F2 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
+
+        <div class="relative max-w-6xl mx-auto px-4 pt-5 pb-8">
+            <!-- Barre supérieure : Badge Promotion + Bouton Mode Sombre/Clair -->
+            <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-emlGold text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    🎓 Promotion Finaliste • 2026-2027
+                </span>
+
+                <button 
+                    id="themeToggleBtn" 
+                    onclick="toggleTheme()" 
+                    aria-label="Changer le thème clair ou sombre"
+                    class="flex items-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-full transition shadow-sm"
+                >
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeLabel" class="hidden sm:inline">Mode Sombre</span>
+                </button>
+            </div>
+
+            <!-- Bloc Central : Logo Vectoriel Officiel Masamba-Lemba -->
+            <div class="text-center">
+                <div class="w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4 rounded-full bg-white p-1 shadow-2xl border-4 border-emlGold flex items-center justify-center">
+                    <!-- LOGO VECTORIEL HAUTE PRÉCISION DE L'ÉCOLE MASAMBA LEMBA -->
+                    <svg viewBox="0 0 300 300" class="w-full h-full rounded-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo officiel École Masamba Lemba">
+                        <defs>
+                            <!-- Arc supérieur pour MASAMBA - LEMBA -->
+                            <path id="topArc" d="M 46,155 A 104,104 0 1,1 254,155" />
+                            <!-- Arc inférieur pour la devise -->
+                            <path id="bottomArc" d="M 38,168 A 114,114 0 0,0 262,168" />
+                        </defs>
+
+                        <!-- Fond blanc du blason -->
+                        <circle cx="150" cy="150" r="146" fill="#FFFFFF" />
+
+                        <!-- Anneau bleu roi supérieur -->
+                        <path d="M 22,162 A 128,128 0 1,1 278,162 L 244,162 A 94,94 0 1,0 56,162 Z" fill="#0B4F9F" />
+
+                        <!-- Texte arqué supérieur : MASAMBA - LEMBA -->
+                        <text fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="23.5" letter-spacing="2.2">
+                            <textPath href="#topArc" startOffset="50%" text-anchor="middle">MASAMBA - LEMBA</textPath>
+                        </text>
+
+                        <!-- Deux étoiles blanches sur les côtés de l'anneau -->
+                        <polygon points="39,144 41.5,150 48,150 43,154 44.8,160 39,156.5 33.2,160 35,154 30,150 36.5,150" fill="#FFFFFF" />
+                        <polygon points="261,144 263.5,150 270,150 265,154 266.8,160 261,156.5 255.2,160 257,154 252,150 258.5,150" fill="#FFFFFF" />
+
+                        <!-- Silhouette du diplômé bleu ciel levant le bras -->
+                        <circle cx="114" cy="112" r="13" fill="#1DA1F2" />
+                        <!-- Toque académique bleu roi -->
+                        <polygon points="94,101 116,92 135,101 115,109" fill="#0B4F9F" />
+                        <rect x="105" y="104" width="19" height="5" rx="2" fill="#0B4F9F" />
+                        <line x1="132" y1="101" x2="132" y2="115" stroke="#0B4F9F" stroke-width="2" />
+                        <!-- Bras levé et buste dynamique -->
+                        <path d="M 85,134 Q 108,136 122,124 Q 134,112 139,93 Q 145,112 134,136 Q 124,158 145,192 L 126,192 Q 112,165 113,142 Q 98,144 85,134 Z" fill="#1DA1F2" />
+
+                        <!-- Livre ouvert central (pages gauches et droites) -->
+                        <!-- Pages gauches -->
+                        <path d="M 145,190 L 92,182 L 95,172 L 145,184 Z" fill="#1DA1F2" />
+                        <path d="M 145,182 L 96,166 L 100,157 L 145,177 Z" fill="#0B4F9F" />
+                        <path d="M 145,174 L 103,151 L 108,143 L 145,169 Z" fill="#0B4F9F" />
+                        <!-- Pages droites -->
+                        <path d="M 151,192 L 210,183 L 207,172 L 151,185 Z" fill="#0B4F9F" />
+                        <path d="M 151,182 L 205,168 L 195,114 L 151,136 Z" fill="#FFFFFF" stroke="#0B4F9F" stroke-width="4" stroke-linejoin="round" />
+                        <path d="M 156,174 L 197,162 L 188,122 L 156,139 Z" fill="none" stroke="#1DA1F2" stroke-width="2.5" />
+
+                        <!-- Cartouche ECOLE sous le livre -->
+                        <rect x="92" y="198" width="116" height="14" rx="4" fill="#0B4F9F" />
+                        <rect x="104" y="204" width="92" height="26" rx="7" fill="#1DA1F2" />
+                        <text x="150" y="222" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="17" letter-spacing="1.5" text-anchor="middle">ECOLE</text>
+
+                        <!-- Devise inférieure en arc : L'EXCELLENCE FAIT LA DIFFERENCE -->
+                        <text fill="#0B4F9F" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="13.2" letter-spacing="0.8">
+                            <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">L'EXCELLENCE FAIT LA DIFFERENCE</textPath>
+                        </text>
+                    </svg>
+                </div>
+
+                <h1 class="text-2xl sm:text-4xl font-black tracking-tight uppercase text-white drop-shadow">
+                    4ème Humanités Scientifiques
+                </h1>
+                <p class="text-emlGold font-bold text-base sm:text-lg mt-1">
+                    École Masamba Lemba — Kinshasa
+                </p>
+                <p class="text-slate-200 italic text-sm sm:text-base max-w-xl mx-auto mt-1.5">
+                    « 74 élèves, 2 salles, 1 seul objectif : Obtenir notre Bac avec brio ! »
+                </p>
+
+                <!-- Jauge de progression vers l'objectif des 74 élèves -->
+                <div class="max-w-md mx-auto mt-5 bg-emlNavy/75 backdrop-blur-sm border border-white/15 rounded-2xl p-3.5 text-left shadow-inner">
+                    <div class="flex justify-between items-center text-xs font-bold mb-1.5">
+                        <span class="text-slate-200">Effectif enregistré : <strong id="countRegistered" class="text-white">65</strong> / <span id="targetTotalDisplay">74</span> élèves</span>
+                        <span id="progressPercentText" class="text-emlCyan">88%</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                        <div id="progressBarFill" class="h-full bg-gradient-to-r from-emlCyan to-emlGold rounded-full transition-all duration-500" style="width: 88%"></div>
+                    </div>
+                    <div class="flex justify-between items-center text-[11px] text-slate-300 mt-2">
+                        <span>🔵 Salle A : <strong id="countSalleA" class="text-white">1</strong></span>
+                        <span>🟡 Salle B : <strong id="countSalleB" class="text-white">1</strong></span>
+                        <span>⚪ À attribuer : <strong id="countUnassigned" class="text-white">63</strong></span>
+                    </div>
+                </div>
+
+                <!-- Compte à rebours vers l'Examen d'État -->
+                <div class="mt-4 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm border border-white/15 px-4 py-2 rounded-2xl">
+                    <span class="text-xs font-bold text-emlGold">⏳ Cap sur l'Examen d'État :</span>
+                    <div id="examCountdown" class="flex items-center gap-1.5 text-xs font-extrabold text-white">
+                        <span class="bg-emlNavy/90 px-2 py-1 rounded-lg border border-emlCyan/30"><span id="cd-days">--</span>j</span>
+                        <span class="bg-emlNavy/90 px-2 py-1 rounded-lg border border-emlCyan/30"><span id="cd-hours">--</span>h</span>
+                        <span class="bg-emlNavy/90 px-2 py-1 rounded-lg border border-emlCyan/30"><span id="cd-mins">--</span>m</span>
+                        <span class="bg-emlNavy/90 px-2 py-1 rounded-lg border border-emlCyan/30"><span id="cd-secs">--</span>s</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =====================================================================
+         BARRE DE NAVIGATION PAR ONGLETS
+         ===================================================================== -->
+    <nav class="sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+        <div class="max-w-6xl mx-auto px-4 flex justify-center sm:justify-start gap-2 overflow-x-auto no-scrollbar">
+            <button id="btn-tab-eleves" onclick="switchTab('eleves')" class="flex items-center gap-2 px-5 py-3.5 text-sm sm:text-base font-extrabold border-b-4 border-emlBlue text-emlBlue dark:text-emlCyan dark:border-emlCyan transition-all whitespace-nowrap">
+                <span>👥 Élèves & Salles</span>
+                <span id="navBadgeCount" class="bg-emlBlue text-white text-xs px-2 py-0.5 rounded-full">65</span>
+            </button>
+            <button id="btn-tab-horaire" onclick="switchTab('horaire')" class="flex items-center gap-2 px-5 py-3.5 text-sm sm:text-base font-extrabold border-b-4 border-transparent text-slate-500 dark:text-slate-400 hover:text-emlBlue dark:hover:text-emlCyan transition-all whitespace-nowrap">
+                <span>📅 Horaires de Cours</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =====================================================================
+         CONTENU PRINCIPAL
+         ===================================================================== -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 sm:py-8">
+
+        <!-- =================================================================
+             ONGLET 1 : ÉLÈVES, ANNONCES, PODIUM & CALCULATEUR
+             ================================================================= -->
+        <section id="tab-eleves" class="animate-card">
+
+            <!-- Tableau d'Affichage (Infos & Interrogations) -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950 text-emlBlue dark:text-emlCyan flex items-center justify-center text-base">📢</span>
+                    <div>
+                        <h2 class="text-sm sm:text-base font-extrabold text-emlNavy dark:text-white">Tableau d'Affichage — Infos & Interrogations</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Communiqués officiels de la 4ème Humanités Scientifiques</p>
+                    </div>
+                </div>
+                <div id="announcementsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <!-- Annonces injectées depuis la ZONE 1 -->
+                </div>
+            </div>
+
+            <!-- Cartes des 2 Chefs de Classe -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <div class="bg-white dark:bg-slate-900 border-l-4 border-emlBlue rounded-2xl p-4 shadow-sm border border-slate-200/80 dark:border-slate-800 flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-950 text-emlBlue dark:text-emlCyan flex items-center justify-center text-xl shrink-0 border border-blue-200 dark:border-blue-800">
+                        👑
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider text-emlBlue dark:text-emlCyan bg-blue-50 dark:bg-blue-950 px-2.5 py-0.5 rounded-full">
+                            Chef de Classe • 4ème H.SC A
+                        </span>
+                        <h3 class="text-base sm:text-lg font-extrabold text-emlNavy dark:text-white mt-1">Muyima emmanuel</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 border-l-4 border-emlGold rounded-2xl p-4 shadow-sm border border-slate-200/80 dark:border-slate-800 flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-emlGold flex items-center justify-center text-xl shrink-0 border border-amber-200 dark:border-amber-800">
+                        👑
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-700 dark:text-emlGold bg-amber-50 dark:bg-amber-950 px-2.5 py-0.5 rounded-full">
+                            Chef de Classe • 4ème H.SC B
+                        </span>
+                        <h3 class="text-base sm:text-lg font-extrabold text-emlNavy dark:text-white mt-1">Immortel (Oka Mangayiko Flory)</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Podium / Tableau d'Honneur (S'affiche automatiquement dès que des notes sont saisies) -->
+            <div id="podiumSection" class="hidden bg-gradient-to-r from-emlNavy via-emlBlue to-blue-900 text-white rounded-2xl p-5 shadow-md mb-6 border border-emlCyan/30">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-sm sm:text-base font-extrabold text-emlGold flex items-center gap-2">
+                        🏆 Tableau d'Honneur (Notes enregistrées sur cet appareil)
+                    </h2>
+                    <span class="text-[11px] text-slate-300">Top 3 Moyennes</span>
+                </div>
+                <div id="podiumGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <!-- Top 3 injecté dynamiquement -->
+                </div>
+            </div>
+
+            <!-- Barre de Recherche & Filtres par Salle -->
+            <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 mb-6 flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
+                <div class="relative flex-1 max-w-md">
+                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        oninput="renderEleves()" 
+                        placeholder="Rechercher un camarade par nom ou pseudo..." 
+                        class="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-sm font-medium text-emlNavy dark:text-white focus:outline-none focus:ring-2 focus:ring-emlCyan transition"
+                    >
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="setFilter('ALL', this)" class="filter-btn active px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emlBlue text-white shadow-sm transition">
+                        Tous
+                    </button>
+                    <button onclick="setFilter('A', this)" class="filter-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 transition">
+                        4ème H.SC A
+                    </button>
+                    <button onclick="setFilter('B', this)" class="filter-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-700 transition">
+                        4ème H.SC B
+                    </button>
+                    <button onclick="setFilter('CHEF', this)" class="filter-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-700 transition">
+                        👑 Chefs de Classe
+                    </button>
+                    <button onclick="setFilter('UNASSIGNED', this)" class="filter-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                        À attribuer
+                    </button>
+                </div>
+            </div>
+
+            <!-- Compteur de résultats -->
+            <div class="flex justify-between items-center mb-4 px-1">
+                <p id="resultsCounter" class="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400">Chargement...</p>
+                <span class="text-xs text-slate-400 hidden sm:inline">Ouvre une fiche pour changer ta photo ou saisir tes pourcentages</span>
+            </div>
+
+            <!-- Grille des Élèves -->
+            <div id="elevesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                <!-- Cartes générées par JavaScript -->
+            </div>
+
+            <!-- État vide si aucun résultat -->
+            <div id="emptyState" class="hidden text-center py-12 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+                <p class="text-3xl mb-2">🔎</p>
+                <h3 class="text-base font-bold text-emlNavy dark:text-white">Aucun élève trouvé</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Essaie un autre nom ou réinitialise le filtre.</p>
+            </div>
+        </section>
+
+        <!-- =================================================================
+             ONGLET 2 : HORAIRES DE COURS (4ÈME H.SC A & B)
+             ================================================================= -->
+        <section id="tab-horaire" class="hidden animate-card">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-4 sm:p-6">
+                
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-extrabold text-emlNavy dark:text-white">Horaire Officiel des Cours</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">De 07h30 à 13h00 • Du Lundi au Vendredi</p>
+                    </div>
+
+                    <!-- Sélecteur de Salle -->
+                    <div class="flex gap-2 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl self-start">
+                        <button id="btn-salle-a" onclick="switchSalleHoraire('A')" class="px-4 py-2 rounded-lg text-xs sm:text-sm font-extrabold bg-emlBlue text-white shadow transition">
+                            4ème H.SC A
+                        </button>
+                        <button id="btn-salle-b" onclick="switchSalleHoraire('B')" class="px-4 py-2 rounded-lg text-xs sm:text-sm font-extrabold text-slate-600 dark:text-slate-300 hover:text-emlBlue transition">
+                            4ème H.SC B
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Conteneur du tableau dynamique (injecté depuis la ZONE 3) -->
+                <div id="scheduleTableWrapper" class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
+                    <!-- Tableau généré automatiquement -->
+                </div>
+
+                <!-- Légende des sigles -->
+                <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-400">
+                    <span class="font-bold text-emlNavy dark:text-white">Légende :</span>
+                    <span><strong>ALG</strong> = Algèbre</span> •
+                    <span><strong>G.A</strong> = Géométrie Analytique</span> •
+                    <span><strong>CHIM</strong> = Chimie</span> •
+                    <span><strong>PHYS</strong> = Physique</span> •
+                    <span><strong>BIOL</strong> = Biologie</span> •
+                    <span><strong>GEOLO</strong> = Géologie</span> •
+                    <span><strong>D.S</strong> = Dessin Scientifique</span> •
+                    <span><strong>ECM</strong> = Éducation Civique & Morale</span> •
+                    <span><strong>ECOL</strong> = Écologie</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =====================================================================
+         FENÊTRE MODALE : PROFIL ÉLÈVE, PHOTO & CALCULATEUR RDC
+         ===================================================================== -->
+    <div id="eleveModal" class="fixed inset-0 z-50 hidden bg-emlNavy/75 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target === this) closeModal()">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-lg max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700 p-5 sm:p-7 relative animate-card">
+            
+            <!-- Bouton Fermer -->
+            <button onclick="closeModal()" aria-label="Fermer" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold flex items-center justify-center transition">
+                ✕
+            </button>
+
+            <!-- En-tête du profil (Infos verrouillées dans le code + Photo modifiable par l'élève) -->
+            <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 pb-5 border-b border-slate-100 dark:border-slate-800">
+                <div class="relative shrink-0">
+                    <img id="modalAvatar" src="" alt="Photo de profil" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-4 border-emlBlue shadow-md">
+                    <label for="photoUploadInput" title="Changer ma photo de profil" class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-emlCyan hover:bg-emlBlue text-white flex items-center justify-center cursor-pointer shadow-md border-2 border-white dark:border-slate-900 transition">
+                        📷
+                    </label>
+                    <input type="file" id="photoUploadInput" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+                </div>
+
+                <div class="flex-1 min-w-0">
+                    <h2 id="modalName" class="text-lg sm:text-xl font-extrabold text-emlNavy dark:text-white leading-snug">Nom de l'élève</h2>
+                    <div class="flex flex-wrap justify-center sm:justify-start items-center gap-2 mt-1.5">
+                        <span id="modalSalleBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full">Salle</span>
+                        <span id="modalRoleBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Élève</span>
+                    </div>
+                    <p id="modalBio" class="text-xs sm:text-sm italic text-slate-500 dark:text-slate-400 mt-2">
+                        « Objectif Bac 2027 ! »
+                    </p>
+
+                    <!-- Actions rapides sur le profil -->
+                    <div class="flex flex-wrap justify-center sm:justify-start gap-2 mt-3">
+                        <label for="photoUploadInput" class="cursor-pointer text-[11px] font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-emlBlue dark:text-emlCyan transition">
+                            🖼️ Changer ma photo
+                        </label>
+                        <button id="resetPhotoBtn" onclick="resetStudentPhoto()" class="hidden text-[11px] font-bold px-2.5 py-1 rounded-lg bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 hover:underline transition">
+                            Remettre l'icône
+                        </button>
+                        <button onclick="shareEncouragement()" class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 transition">
+                            💬 Encourager sur WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Calculateur Interactif des Pourcentages (Option B) -->
+            <div class="mt-5">
+                <div class="flex items-center justify-between mb-1.5">
+                    <h3 class="text-sm sm:text-base font-extrabold text-emlNavy dark:text-white flex items-center gap-1.5">
+                        📊 Mes Pourcentages (Système RDC)
+                    </h3>
+                    <button onclick="resetStudentGrades()" class="text-xs font-semibold text-red-500 hover:underline">
+                        Effacer les notes
+                    </button>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+                    Indique tes propres pourcentages pour chaque période et examen. Ils sont sauvegardés automatiquement sur ton téléphone.
+                </p>
+
+                <!-- 1ER SEMESTRE -->
+                <div class="bg-blue-50/70 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50 rounded-2xl p-3.5 sm:p-4 mb-3.5">
+                    <div class="flex justify-between items-center mb-2.5">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-emlBlue dark:text-emlCyan">1er Semestre</span>
+                        <span id="sem1Display" class="text-xs font-extrabold bg-emlBlue text-white px-2.5 py-0.5 rounded-full">Moy. S1 : —</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">1ère Période (%)</label>
+                            <input type="number" id="input-p1" min="0" max="100" step="0.1" placeholder="ex: 64" oninput="calculateGrades()" class="w-full p-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-center font-bold text-sm text-emlNavy dark:text-white focus:ring-2 focus:ring-emlBlue outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">2ème Période (%)</label>
+                            <input type="number" id="input-p2" min="0" max="100" step="0.1" placeholder="ex: 68" oninput="calculateGrades()" class="w-full p-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-center font-bold text-sm text-emlNavy dark:text-white focus:ring-2 focus:ring-emlBlue outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-emlBlue dark:text-emlCyan mb-1">Examen 1er S. (%)</label>
+                            <input type="number" id="input-ex1" min="0" max="100" step="0.1" placeholder="ex: 66" oninput="calculateGrades()" class="w-full p-2 bg-white dark:bg-slate-800 border-2 border-blue-300 dark:border-blue-700 rounded-xl text-center font-bold text-sm text-emlNavy dark:text-white focus:ring-2 focus:ring-emlBlue outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2ÈME SEMESTRE -->
+                <div class="bg-amber-50/70 dark:bg-amber-950/30 border border-amber-100 dark:border-amber-900/50 rounded-2xl p-3.5 sm:p-4 mb-4">
+                    <div class="flex justify-between items-center mb-2.5">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-amber-800 dark:text-emlGold">2ème Semestre</span>
+                        <span id="sem2Display" class="text-xs font-extrabold bg-amber-600 text-white px-2.5 py-0.5 rounded-full">Moy. S2 : —</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">3ème Période (%)</label>
+                            <input type="number" id="input-p3" min="0" max="100" step="0.1" placeholder="ex: 70" oninput="calculateGrades()" class="w-full p-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-center font-bold text-sm text-emlNavy dark:text-white focus:ring-2 focus:ring-amber-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-300 mb-1">4ème Période (%)</label>
+                            <input type="number" id="input-p4" min="0" max="100" step="0.1" placeholder="ex: 72" oninput="calculateGrades()" class="w-full p-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl text-center font-bold text-sm text-emlNavy dark:text-white focus:ring-2 focus:ring-amber-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-amber-800 dark:text-emlGold mb-1">Examen 2ème S. (%)</label>
+                            <input type="number" id="input-ex2" min="0" max="100" step="0.1" placeholder="ex: 71" oninput="calculateGrades()" class="w-full p-2 bg-white dark:bg-slate-800 border-2 border-amber-300 dark:border-amber-700 rounded-xl text-center font-bold text-sm text-emlNavy dark:text-white focus:ring-2 focus:ring-amber-500 outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RÉSULTAT GÉNÉRAL ANNUEL -->
+                <div class="bg-gradient-to-r from-emlNavy to-emlBlue text-white rounded-2xl p-4 text-center shadow-md border-b-4 border-emlGold">
+                    <span class="text-xs uppercase tracking-wider text-slate-300 font-semibold">Pourcentage Général Annuel</span>
+                    <div id="annualAvgDisplay" class="text-3xl font-black text-emlGold my-1">0.0 %</div>
+                    <div id="annualMentionDisplay" class="text-xs sm:text-sm font-bold text-white">
+                        Saisis tes pourcentages ci-dessus pour calculer ta moyenne
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         PIED DE PAGE OFFICIEL (FOOTER)
+         ===================================================================== -->
+    <footer class="bg-emlNavy text-slate-300 border-t-4 border-emlCyan mt-12">
+        <div class="max-w-6xl mx-auto px-4 py-8 text-center">
+            <p class="font-extrabold text-white text-sm sm:text-base">
+                École Masamba Lemba — 4ème Humanités Scientifiques (2026-2027)
+            </p>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                L'excellence fait la différence • Promotion Finaliste (Salles A & B)
+            </p>
+            <div class="mt-4 pt-4 border-t border-white/10 inline-block px-6">
+                <p class="text-xs sm:text-sm">
+                    Site conçu par <span class="text-emlGold font-extrabold tracking-wide">Joyce Kisoka</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =====================================================================
+         SCRIPT JAVASCRIPT — ORGANISÉ EN 3 ZONES FACILES À MODIFIER
+         ===================================================================== -->
+    <script>
+        /* =========================================================================
+           ZONE 1 : ANNONCES & DATE DU BAC (MODIFIABLE PAR JOYCE DANS QUICKEDIT)
+           - Modifie la date de l'Examen d'État ou les annonces de la semaine ici.
+           ========================================================================= */
+        const CONFIG_PROMOTION = {
+            effectifTotalCible: 74,
+            dateExamenEtat: "2027-06-21T07:30:00", // Format : AAAA-MM-JJTHH:MM:SS
+            annonces: [
+                {
+                    badge: "📌 Rappel Important",
+                    titre: "Répartition des salles A & B",
+                    texte: "La mise à jour officielle des listes par salle est en cours. Vérifiez régulièrement votre profil !"
+                },
+                {
+                    badge: "📚 Objectif Bac 2027",
+                    titre: "Préparation Examen d'État",
+                    texte: "Utilisez l'onglet Horaires pour suivre vos cours de 07h30 à 13h00 et suivez vos pourcentages sur votre fiche."
+                }
+            ]
+        };
+
+        /* =========================================================================
+           ZONE 2 : PROFILS & LISTE DES ÉLÈVES (MODIFIABLE PAR JOYCE DANS QUICKEDIT)
+           - Pour modifier un élève : change son "nom", sa "salle" ("A", "B" ou "Non attribuée"),
+             son "role" ("Élève", "Chef de classe A", "Chef de classe B") ou sa "bio".
+           - Pour ajouter un nouvel élève : copie une ligne { ... }, colle-la et change le nom.
+           - Le site classe automatiquement toute la liste par ordre alphabétique !
+           ========================================================================= */
+        const ELEVES = [
+            { nom: "~ •💍🤍• ~", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ ..", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ 🇨🇩🇦🇴", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Amelia Tximpi", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "AMN (No Jesus no life 🙏✝️)", salle: "Non attribuée", role: "Élève", bio: "No Jesus no life 🙏✝️" },
+            { nom: "~ Archange mandjek's", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "archipp", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Benjamin wabulakombe", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Bnv ❄️", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ carteviekams", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Chrisliana", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ CHRISTOPHER", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Christopher Nsaka", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Cycy", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Damien 🤞❤️👽👊 cee", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Damien Kiyulu", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Daniella (Bac ou rien)", salle: "Non attribuée", role: "Élève", bio: "Bac ou rien !" },
+            { nom: "~ Davina Kinkela", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Égide SG", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Eliane Nk", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Ex 😢 Aimercisse", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Exaucia Makila", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Fify Lutu", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Francky$", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ GKV", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Grace", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Gradicia", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ HBI le chouchou des Na...", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ HBI le chouchou des nan...", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Henrica", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Immortel (Oka Mangayiko Flory)", salle: "B", role: "Chef de classe B", bio: "Chef de classe 4ème H.SC B — Tous ensemble vers le Bac !" },
+            { nom: "~ IZZY~Baby@&", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~~JO3 🈲", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Joseisola", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Joyce Mbangu", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Junior francklin", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "KAKINDA (O meu sorriso permanecerá. ❤️)", salle: "Non attribuée", role: "Élève", bio: "O meu sorriso permanecerá. ❤️" },
+            { nom: "~ Kenaya 💕", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ keren babe", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Kertus", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ M-D", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Mégara", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Ministre Ya Departement Ya Debat", salle: "Non attribuée", role: "Élève", bio: "Le foot ⚽ ma live" },
+            { nom: "~ Mireille Mbenza", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ miryamdzama5", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Miss_ria", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Mr _D4CH", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Mr Isaac", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Muyima emmanuel", salle: "A", role: "Chef de classe A", bio: "Chef de classe 4ème H.SC A — Objectif Bac pour tous !" },
+            { nom: "~ mv luzolo", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Nefia", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ no name", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Recruteuse2 Pépite", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Reptile", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Roger Paradoxe", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Roro", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Saddy_ ❤️‍🔥❤️‍🔥", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Samuel_ Bola _Sbl 🛡️ 🦁", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Sandra", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Shëḳį ❤️", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Sniper", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "~ Tshikeva ❤️🥰🥰", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Vina~", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Warren", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" },
+            { nom: "Wonder", salle: "Non attribuée", role: "Élève", bio: "En route vers le Bac 2027 !" }
+        ];
+
+        /* =========================================================================
+           ZONE 3 : HORAIRES DES COURS (MODIFIABLE PAR JOYCE DANS QUICKEDIT)
+           - Chaque ligne représente une heure de cours : [Heure, Lun, Mar, Mer, Jeu, Ven]
+           ========================================================================= */
+        const HORAIRES_COURS = {
+            A: [
+                ["1ère (07h30 - 08h15)", "CHIM", "BIOL", "D.S", "ECOL", "G.A"],
+                ["2ème (08h15 - 09h00)", "CHIM", "CHIM", "D.S", "ENGL", "INFO"],
+                ["3ème (09h00 - 09h45)", "ALG", "G.A", "REL", "HIST / EPS", "ALG"],
+                ["4ème (09h45 - 10h30)", "ALG", "G.A", "GEO", "GEO", "BIOL"],
+                ["5ème (10h45 - 11h30)", "PHYS", "PHYS", "ENGL", "HIST", "BIOL"],
+                ["6ème (11h30 - 12h15)", "PHYS", "ENGL", "FRA", "HIST / FRA", "PHILO"],
+                ["7ème (12h15 - 13h00)", "FRA", "HIST / G.G", "FRA", "ECM / REL", "GEOLO"]
+            ],
+            B: [
+                ["1ère (07h30 - 08h15)", "PHYS", "G.A", "FRA", "ANG", "FR"],
+                ["2ème (08h15 - 09h00)", "PHYS", "CHIM", "FA", "ECOL", "FR"],
+                ["3ème (09h00 - 09h45)", "CHIM", "CHIM", "PHILO", "GEOD", "G-A"],
+                ["4ème (09h45 - 10h30)", "CHIM", "BIOL", "D.S", "HIST", "INFO"],
+                ["5ème (10h45 - 11h30)", "ALG", "EPS", "D.S", "EPS", "AMG"],
+                ["6ème (11h30 - 12h15)", "ALG", "PHYS", "GEOG", "BIOL", "GEOLO"],
+                ["7ème (12h15 - 13h00)", "ECM", "ANG", "ANG", "RÉL", "BIOB"]
+            ]
+        };
+
+        /* =========================================================================
+           ZONE PROTÉGÉE : MOTEUR DU SITE (NE PAS TOUCHER)
+           ========================================================================= */
+
+        // Icône par défaut fidèle à l'image marron fournie par Joyce (#5C2C1D & #F5B8A3)
+        const DEFAULT_AVATAR_SVG = "data:image/svg+xml;utf8," + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+                <rect width="200" height="200" fill="#5C2C1D"/>
+                <circle cx="100" cy="76" r="33" fill="#F5B8A3"/>
+                <path d="M38 174 C38 130 162 130 162 174 Z" fill="#F5B8A3"/>
+            </svg>
+        `);
+
+        // Tri alphabétique automatique tout en conservant une clé unique stable par nom
+        const ELEVES_SORTED = ELEVES.map((el, index) => ({
+            ...el,
+            uid: "eml_" + index + "_" + el.nom.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+        })).sort((a, b) => {
+            const cleanA = a.nom.replace(/^[~\s•.]+/, '');
+            const cleanB = b.nom.replace(/^[~\s•.]+/, '');
+            return cleanA.localeCompare(cleanB, 'fr', { sensitivity: 'base' });
+        });
+
+        let currentFilter = 'ALL';
+        let activeStudent = null;
+
+        // --- Gestion du Mode Sombre / Clair ---
+        function initTheme() {
+            const savedTheme = localStorage.getItem('eml_theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                updateThemeUI(true);
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('eml_theme', isDark ? 'dark' : 'light');
+            updateThemeUI(isDark);
+        }
+
+        function updateThemeUI(isDark) {
+            document.getElementById('themeIcon').textContent = isDark ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = isDark ? 'Mode Clair' : 'Mode Sombre';
+        }
+
+        // --- Affichage des Annonces (Zone 1) ---
+        function renderAnnouncements() {
+            const container = document.getElementById('announcementsContainer');
+            container.innerHTML = CONFIG_PROMOTION.annonces.map(item => `
+                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80">
+                    <span class="inline-block text-[11px] font-extrabold text-emlBlue dark:text-emlCyan bg-blue-100/70 dark:bg-blue-950 px-2 py-0.5 rounded-md mb-1">
+                        ${item.badge}
+                    </span>
+                    <h3 class="text-xs sm:text-sm font-bold text-emlNavy dark:text-white">${item.titre}</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">${item.texte}</p>
+                </div>
+            `).join('');
+        }
+
+        // --- Mise à jour de la jauge d'effectif (74 élèves) ---
+        function updateEffectifStats() {
+            const total = ELEVES_SORTED.length;
+            const target = CONFIG_PROMOTION.effectifTotalCible;
+            const countA = ELEVES_SORTED.filter(e => e.salle === 'A').length;
+            const countB = ELEVES_SORTED.filter(e => e.salle === 'B').length;
+            const countUnassigned = total - countA - countB;
+            const pct = Math.min(100, Math.round((total / target) * 100));
+
+            document.getElementById('countRegistered').textContent = total;
+            document.getElementById('targetTotalDisplay').textContent = target;
+            document.getElementById('progressPercentText').textContent = pct + '%';
+            document.getElementById('progressBarFill').style.width = pct + '%';
+            document.getElementById('countSalleA').textContent = countA;
+            document.getElementById('countSalleB').textContent = countB;
+            document.getElementById('countUnassigned').textContent = countUnassigned;
+            document.getElementById('navBadgeCount').textContent = total;
+        }
+
+        // --- Gestion des photos personnalisées par l'élève (localStorage) ---
+        function getStudentPhoto(student) {
+            try {
+                const customPhoto = localStorage.getItem('photo_' + student.uid);
+                if (customPhoto) return customPhoto;
+            } catch (e) {}
+            return student.photo || DEFAULT_AVATAR_SVG;
+        }
+
+        function handlePhotoUpload(event) {
+            if (!activeStudent) return;
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Compression légère via Canvas pour éviter de saturer le localStorage du téléphone
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const maxSize = 240;
+                    let w = img.width;
+                    let h = img.height;
+                    if (w > h) {
+                        if (w > maxSize) { h *= maxSize / w; w = maxSize; }
+                    } else {
+                        if (h > maxSize) { w *= maxSize / h; h = maxSize; }
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+
+                    try {
+                        localStorage.setItem('photo_' + activeStudent.uid, compressedDataUrl);
+                        document.getElementById('modalAvatar').src = compressedDataUrl;
+                        document.getElementById('resetPhotoBtn').classList.remove('hidden');
+                        renderEleves();
+                    } catch (err) {
+                        console.warn('Stockage local plein pour cette image.');
+                    }
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetStudentPhoto() {
+            if (!activeStudent) return;
+            localStorage.removeItem('photo_' + activeStudent.uid);
+            document.getElementById('modalAvatar').src = activeStudent.photo || DEFAULT_AVATAR_SVG;
+            document.getElementById('resetPhotoBtn').classList.add('hidden');
+            renderEleves();
+        }
+
+        // --- Calcul des notes & moyennes (Système Scolaire Congolais RDC) ---
+        function getStudentGrades(uid) {
+            try {
+                const raw = localStorage.getItem('grades_' + uid);
+                return raw ? JSON.parse(raw) : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function computeStats(grades) {
+            if (!grades) return { s1: null, s2: null, annual: null };
+
+            const p1 = parseFloat(grades.p1);
+            const p2 = parseFloat(grades.p2);
+            const ex1 = parseFloat(grades.ex1);
+            const p3 = parseFloat(grades.p3);
+            const p4 = parseFloat(grades.p4);
+            const ex2 = parseFloat(grades.ex2);
+
+            let s1Sum = 0, s1Weight = 0;
+            if (!isNaN(p1)) { s1Sum += p1; s1Weight += 1; }
+            if (!isNaN(p2)) { s1Sum += p2; s1Weight += 1; }
+            if (!isNaN(ex1)) { s1Sum += ex1 * 2; s1Weight += 2; }
+            const s1 = s1Weight > 0 ? (s1Sum / s1Weight) : null;
+
+            let s2Sum = 0, s2Weight = 0;
+            if (!isNaN(p3)) { s2Sum += p3; s2Weight += 1; }
+            if (!isNaN(p4)) { s2Sum += p4; s2Weight += 1; }
+            if (!isNaN(ex2)) { s2Sum += ex2 * 2; s2Weight += 2; }
+            const s2 = s2Weight > 0 ? (s2Sum / s2Weight) : null;
+
+            let annual = null;
+            if (s1 !== null && s2 !== null) annual = (s1 + s2) / 2;
+            else if (s1 !== null) annual = s1;
+            else if (s2 !== null) annual = s2;
+
+            return { s1, s2, annual };
+        }
+
+        // --- Mise à jour du Podium Top 3 ---
+        function updatePodium() {
+            const ranked = ELEVES_SORTED.map(el => {
+                const stats = computeStats(getStudentGrades(el.uid));
+                return { ...el, annual: stats.annual };
+            }).filter(el => el.annual !== null)
+              .sort((a, b) => b.annual - a.annual)
+              .slice(0, 3);
+
+            const podiumSection = document.getElementById('podiumSection');
+            const podiumGrid = document.getElementById('podiumGrid');
+
+            if (ranked.length === 0) {
+                podiumSection.classList.add('hidden');
+                return;
+            }
+
+            podiumSection.classList.remove('hidden');
+            const medals = ['🥇 1er', '🥈 2ème', '🥉 3ème'];
+
+            podiumGrid.innerHTML = ranked.map((el, i) => `
+                <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3 flex items-center gap-3">
+                    <img src="${getStudentPhoto(el)}" alt="${el.nom}" class="w-10 h-10 rounded-full object-cover border-2 border-emlGold shrink-0">
+                    <div class="min-w-0 flex-1">
+                        <span class="text-[11px] font-extrabold text-emlGold">${medals[i]}</span>
+                        <h4 class="text-xs sm:text-sm font-bold text-white truncate">${el.nom}</h4>
+                        <span class="text-xs font-extrabold text-emlCyan">${el.annual.toFixed(1)} %</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- Rendu de la Grille des Élèves ---
+        function renderEleves() {
+            const grid = document.getElementById('elevesGrid');
+            const emptyState = document.getElementById('emptyState');
+            const counter = document.getElementById('resultsCounter');
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            const filtered = ELEVES_SORTED.filter(el => {
+                const matchSearch = el.nom.toLowerCase().includes(query) || el.role.toLowerCase().includes(query);
+                if (!matchSearch) return false;
+
+                if (currentFilter === 'ALL') return true;
+                if (currentFilter === 'A') return el.salle === 'A';
+                if (currentFilter === 'B') return el.salle === 'B';
+                if (currentFilter === 'CHEF') return el.role.toLowerCase().includes('chef');
+                if (currentFilter === 'UNASSIGNED') return el.salle === 'Non attribuée';
+                return true;
+            });
+
+            counter.textContent = `${filtered.length} élève${filtered.length > 1 ? 's' : ''} affiché${filtered.length > 1 ? 's' : ''}`;
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            filtered.forEach(el => {
+                const isChef = el.role.toLowerCase().includes('chef');
+                let salleClass = 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300';
+                let salleText = 'Salle : À attribuer';
+
+                if (el.salle === 'A') {
+                    salleClass = 'bg-blue-100 dark:bg-blue-950 text-emlBlue dark:text-emlCyan';
+                    salleText = '4ème H.SC A';
+                } else if (el.salle === 'B') {
+                    salleClass = 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-emlGold';
+                    salleText = '4ème H.SC B';
+                }
+
+                const stats = computeStats(getStudentGrades(el.uid));
+                const avgBadge = stats.annual !== null
+                    ? `<span class="text-xs font-extrabold px-2.5 py-1 rounded-lg ${stats.annual >= 50 ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800' : 'bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800'}">Moy : ${stats.annual.toFixed(1)}%</span>`
+                    : `<span class="text-xs font-medium text-slate-400">Moy : —</span>`;
+
+                const card = document.createElement('div');
+                card.className = `bg-white dark:bg-slate-900 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all border ${isChef ? 'border-emlGold ring-1 ring-emlGold/50' : 'border-slate-200 dark:border-slate-800'} flex flex-col justify-between`;
+
+                card.innerHTML = `
+                    <div class="flex items-start gap-3.5">
+                        <img 
+                            src="${getStudentPhoto(el)}" 
+                            alt="${el.nom}" 
+                            class="w-14 h-14 rounded-full object-cover border-2 ${isChef ? 'border-emlGold' : 'border-emlCyan'} shrink-0 shadow-sm"
+                        >
+                        <div class="min-w-0 flex-1">
+                            <h3 class="font-bold text-emlNavy dark:text-white text-sm sm:text-base truncate" title="${el.nom}">
+                                ${el.nom}
+                            </h3>
+                            <div class="flex flex-wrap gap-1.5 mt-1.5">
+                                <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${salleClass}">
+                                    ${salleText}
+                                </span>
+                                ${isChef ? `<span class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">👑 ${el.role}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+                        ${avgBadge}
+                        <button 
+                            onclick="openModal('${el.uid}')" 
+                            class="px-3 py-1.5 rounded-xl bg-emlBlue hover:bg-emlNavy text-white text-xs font-bold transition shadow-sm"
+                        >
+                            📝 Profil & Notes
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            updatePodium();
+        }
+
+        function setFilter(filterType, btn) {
+            currentFilter = filterType;
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active', 'bg-emlBlue', 'text-white', 'shadow-sm');
+                b.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            });
+            btn.classList.add('active', 'bg-emlBlue', 'text-white', 'shadow-sm');
+            btn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            renderEleves();
+        }
+
+        // --- Navigation par Onglets ---
+        function switchTab(tab) {
+            const tabEleves = document.getElementById('tab-eleves');
+            const tabHoraire = document.getElementById('tab-horaire');
+            const btnEleves = document.getElementById('btn-tab-eleves');
+            const btnHoraire = document.getElementById('btn-tab-horaire');
+
+            if (tab === 'eleves') {
+                tabEleves.classList.remove('hidden');
+                tabHoraire.classList.add('hidden');
+                btnEleves.classList.add('border-emlBlue', 'text-emlBlue', 'dark:text-emlCyan', 'dark:border-emlCyan');
+                btnEleves.classList.remove('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+                btnHoraire.classList.remove('border-emlBlue', 'text-emlBlue', 'dark:text-emlCyan', 'dark:border-emlCyan');
+                btnHoraire.classList.add('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+            } else {
+                tabEleves.classList.add('hidden');
+                tabHoraire.classList.remove('hidden');
+                btnHoraire.classList.add('border-emlBlue', 'text-emlBlue', 'dark:text-emlCyan', 'dark:border-emlCyan');
+                btnHoraire.classList.remove('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+                btnEleves.classList.remove('border-emlBlue', 'text-emlBlue', 'dark:text-emlCyan', 'dark:border-emlCyan');
+                btnEleves.classList.add('border-transparent', 'text-slate-500', 'dark:text-slate-400');
+            }
+        }
+
+        // --- Rendu des Horaires (Zone 3) ---
+        function renderScheduleTable(salle) {
+            const rows = HORAIRES_COURS[salle];
+            const wrapper = document.getElementById('scheduleTableWrapper');
+
+            let bodyHtml = '';
+            rows.forEach((row, index) => {
+                // Insérer la pause récréation après la 4ème heure
+                if (index === 4) {
+                    bodyHtml += `
+                        <tr class="bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-emlGold text-xs font-extrabold">
+                            <td colspan="6" class="py-2 px-3 uppercase tracking-wider">☕ Récréation (10h30 - 10h45)</td>
+                        </tr>
+                    `;
+                }
+
+                const isAlt = index % 2 === 1 ? 'bg-slate-50/70 dark:bg-slate-800/40' : '';
+                bodyHtml += `
+                    <tr class="${isAlt} hover:bg-blue-50/50 dark:hover:bg-slate-800 transition-colors">
+                        <td class="py-3 px-3 bg-slate-100 dark:bg-slate-800 font-bold text-slate-700 dark:text-slate-200 border-r border-slate-200 dark:border-slate-700 whitespace-nowrap">
+                            ${row[0]}
+                        </td>
+                        ${row.slice(1).map(cours => `
+                            <td class="py-3 px-2 border-r last:border-r-0 border-slate-200 dark:border-slate-700 ${cours === 'ALG' ? 'text-emlBlue dark:text-emlCyan font-extrabold' : ''}">
+                                ${cours}
+                            </td>
+                        `).join('')}
+                    </tr>
+                `;
+            });
+
+            wrapper.innerHTML = `
+                <table class="w-full text-center border-collapse min-w-[640px]">
+                    <thead>
+                        <tr class="bg-emlBlue text-white text-xs sm:text-sm uppercase tracking-wider">
+                            <th class="py-3.5 px-3 border border-blue-800 bg-emlNavy">Heures</th>
+                            <th class="py-3.5 px-3 border border-blue-800">Lundi</th>
+                            <th class="py-3.5 px-3 border border-blue-800">Mardi</th>
+                            <th class="py-3.5 px-3 border border-blue-800">Mercredi</th>
+                            <th class="py-3.5 px-3 border border-blue-800">Jeudi</th>
+                            <th class="py-3.5 px-3 border border-blue-800">Vendredi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-xs sm:text-sm font-semibold text-emlNavy dark:text-slate-200 divide-y divide-slate-200 dark:divide-slate-700">
+                        ${bodyHtml}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function switchSalleHoraire(salle) {
+            const btnA = document.getElementById('btn-salle-a');
+            const btnB = document.getElementById('btn-salle-b');
+
+            if (salle === 'A') {
+                btnA.classList.add('bg-emlBlue', 'text-white', 'shadow');
+                btnA.classList.remove('text-slate-600', 'dark:text-slate-300');
+                btnB.classList.remove('bg-emlBlue', 'text-white', 'shadow');
+                btnB.classList.add('text-slate-600', 'dark:text-slate-300');
+            } else {
+                btnB.classList.add('bg-emlBlue', 'text-white', 'shadow');
+                btnB.classList.remove('text-slate-600', 'dark:text-slate-300');
+                btnA.classList.remove('bg-emlBlue', 'text-white', 'shadow');
+                btnA.classList.add('text-slate-600', 'dark:text-slate-300');
+            }
+            renderScheduleTable(salle);
+        }
+
+        // --- Gestion de la Modale Profil & Calculateur ---
+        function openModal(uid) {
+            activeStudent = ELEVES_SORTED.find(e => e.uid === uid);
+            if (!activeStudent) return;
+
+            document.getElementById('modalName').textContent = activeStudent.nom;
+            document.getElementById('modalAvatar').src = getStudentPhoto(activeStudent);
+            document.getElementById('modalBio').textContent = `« ${activeStudent.bio || 'En route vers le Bac 2027 !'} »`;
+
+            // Afficher le bouton de réinitialisation photo si une photo perso est enregistrée
+            const hasCustomPhoto = !!localStorage.getItem('photo_' + activeStudent.uid);
+            document.getElementById('resetPhotoBtn').classList.toggle('hidden', !hasCustomPhoto);
+
+            const salleBadge = document.getElementById('modalSalleBadge');
+            if (activeStudent.salle === 'A') {
+                salleBadge.textContent = '4ème H.SC A';
+                salleBadge.className = 'text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950 text-emlBlue dark:text-emlCyan';
+            } else if (activeStudent.salle === 'B') {
+                salleBadge.textContent = '4ème H.SC B';
+                salleBadge.className = 'text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-emlGold';
+            } else {
+                salleBadge.textContent = 'Salle : À attribuer';
+                salleBadge.className = 'text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300';
+            }
+
+            const roleBadge = document.getElementById('modalRoleBadge');
+            roleBadge.textContent = activeStudent.role.toLowerCase().includes('chef')
+                ? '👑 ' + activeStudent.role
+                : activeStudent.role;
+
+            // Charger les notes enregistrées de cet élève
+            const saved = getStudentGrades(activeStudent.uid) || {};
+            document.getElementById('input-p1').value = saved.p1 ?? '';
+            document.getElementById('input-p2').value = saved.p2 ?? '';
+            document.getElementById('input-ex1').value = saved.ex1 ?? '';
+            document.getElementById('input-p3').value = saved.p3 ?? '';
+            document.getElementById('input-p4').value = saved.p4 ?? '';
+            document.getElementById('input-ex2').value = saved.ex2 ?? '';
+
+            calculateGrades(false);
+            document.getElementById('eleveModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('eleveModal').classList.add('hidden');
+            activeStudent = null;
+            renderEleves();
+        }
+
+        function calculateGrades(save = true) {
+            const grades = {
+                p1: document.getElementById('input-p1').value,
+                p2: document.getElementById('input-p2').value,
+                ex1: document.getElementById('input-ex1').value,
+                p3: document.getElementById('input-p3').value,
+                p4: document.getElementById('input-p4').value,
+                ex2: document.getElementById('input-ex2').value
+            };
+
+            if (save && activeStudent) {
+                try {
+                    localStorage.setItem('grades_' + activeStudent.uid, JSON.stringify(grades));
+                } catch (e) {}
+            }
+
+            const stats = computeStats(grades);
+            document.getElementById('sem1Display').textContent = stats.s1 !== null ? `Moy. S1 : ${stats.s1.toFixed(1)}%` : 'Moy. S1 : —';
+            document.getElementById('sem2Display').textContent = stats.s2 !== null ? `Moy. S2 : ${stats.s2.toFixed(1)}%` : 'Moy. S2 : —';
+
+            const annualDisplay = document.getElementById('annualAvgDisplay');
+            const mentionDisplay = document.getElementById('annualMentionDisplay');
+
+            if (stats.annual === null) {
+                annualDisplay.textContent = '0.0 %';
+                mentionDisplay.textContent = 'Saisis tes pourcentages ci-dessus pour calculer ta moyenne';
+                mentionDisplay.className = 'text-xs sm:text-sm font-semibold text-slate-200';
+                return;
+            }
+
+            annualDisplay.textContent = `${stats.annual.toFixed(1)} %`;
+
+            if (stats.annual >= 80) {
+                mentionDisplay.textContent = '🌟 Grande Distinction — Excellence Scientifique !';
+                mentionDisplay.className = 'text-xs sm:text-sm font-extrabold text-emerald-300';
+            } else if (stats.annual >= 70) {
+                mentionDisplay.textContent = '✨ Distinction — Très beau parcours !';
+                mentionDisplay.className = 'text-xs sm:text-sm font-extrabold text-sky-300';
+            } else if (stats.annual >= 60) {
+                mentionDisplay.textContent = '👍 Satisfaction — Continue comme ça !';
+                mentionDisplay.className = 'text-xs sm:text-sm font-extrabold text-amber-200';
+            } else if (stats.annual >= 50) {
+                mentionDisplay.textContent = '✔️ Réussite — Cap sur le Bac !';
+                mentionDisplay.className = 'text-xs sm:text-sm font-bold text-white';
+            } else {
+                mentionDisplay.textContent = '⚠️ Échec (< 50%) — Courage, redouble d\'efforts !';
+                mentionDisplay.className = 'text-xs sm:text-sm font-extrabold text-rose-300';
+            }
+        }
+
+        function resetStudentGrades() {
+            if (!activeStudent) return;
+            localStorage.removeItem('grades_' + activeStudent.uid);
+            ['input-p1', 'input-p2', 'input-ex1', 'input-p3', 'input-p4', 'input-ex2'].forEach(id => {
+                document.getElementById(id).value = '';
+            });
+            calculateGrades(false);
+        }
+
+        function shareEncouragement() {
+            if (!activeStudent) return;
+            const msg = encodeURIComponent(`Salut ${activeStudent.nom} ! Force à toi pour notre 4ème Humanités Scientifiques à l'École Masamba Lemba. Objectif Bac 2027 tous ensemble ! 🎓🔥`);
+            window.open(`https://wa.me/?text=${msg}`, '_blank');
+        }
+
+        // --- Compte à rebours Examen d'État ---
+        function updateCountdown() {
+            const target = new Date(CONFIG_PROMOTION.dateExamenEtat).getTime();
+            const now = Date.now();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                document.getElementById('examCountdown').innerHTML = '<span class="text-emlGold">C\'est le grand jour ! Bonne chance à tous !</span>';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').textContent = days;
+            document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+            document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+        }
+
+        // --- Initialisation au chargement de la page ---
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            renderAnnouncements();
+            updateEffectifStats();
+            renderEleves();
+            renderScheduleTable('A');
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+</body>
+</html>
